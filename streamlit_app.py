@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer, WebRtcMode, ClientSettings
+from streamlit_webrtc import webrtc_streamer, WebRtcMode
 import asyncio
 import av
 import os
@@ -44,10 +44,7 @@ webrtc_ctx = webrtc_streamer(
     key="pronunciation-coach",
     mode=WebRtcMode.SENDONLY,
     audio_receiver_size=256,
-    client_settings=ClientSettings(
-        media_stream_constraints={"audio": True, "video": False},
-        rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
-    )
+    media_stream_constraints={"audio": True, "video": False}
 )
 
 processor = AudioProcessor()
