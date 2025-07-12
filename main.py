@@ -42,7 +42,7 @@ openai.api_key = TOGETHER_API_KEY
 openai.api_base = "https://api.together.xyz/v1"
 
 # Serve static files (e.g., index.html)
-app.mount("/frontend", StaticFiles(directory="static"), name="static")
+app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
 
 @app.get("/", response_class=HTMLResponse)
 def root():
