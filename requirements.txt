@@ -1,8 +1,17 @@
+# Web App Dependencies
 streamlit
 streamlit-webrtc
-numpy
-av
+
+# Core Functionality
+fastapi
+uvicorn
 gtts
 openai
 groq
+aiofiles
+python-multipart
 python-dotenv
+
+# Audio/Video Processing
+av
+numpy
