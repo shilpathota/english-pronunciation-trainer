@@ -1,8 +1,8 @@
-python-dotenv
-fastapi
-uvicorn
+streamlit
+streamlit-webrtc
+numpy
+av
 gtts
 openai
 groq
-aiofiles
-python-multipart
+python-dotenv
