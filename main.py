@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, Form
-from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from groq import Groq
 import openai
 from gtts import gTTS
@@ -41,9 +41,13 @@ groq_client = Groq(api_key=GROQ_API_KEY)
 openai.api_key = TOGETHER_API_KEY
 openai.api_base = "https://api.together.xyz/v1"
 
-@app.get("/")
+# Serve static files (e.g., index.html)
+app.mount("/frontend", StaticFiles(directory="static"), name="static")
+
+@app.get("/", response_class=HTMLResponse)
 def root():
-    return {"message": "Hello from FastAPI"}
+    with open("frontend/index.html", "r") as f:
+        return f.read()
 @app.post("/pronounce/")
 async def process_pronunciation(audio: UploadFile, target: str = Form(...)):
     logger.info("Received request to /pronounce/")

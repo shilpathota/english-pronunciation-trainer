@@ -56,14 +56,14 @@
             formData.append("audio", audioBlob, "recording.wav");
             formData.append("target", document.getElementById("target").value);
 
-            const response = await fetch("http://localhost:8005/pronounce/", {
+            const response = await fetch("/pronounce/", {
                 method: "POST",
                 body: formData
             });
 
             const result = await response.json();
             document.getElementById("feedback").innerText = result.feedback;
-            document.getElementById("ttsPlayer").src = "http://localhost:8005" + result.tts_audio_url;
+            document.getElementById("ttsPlayer").src ="/tts_audio/" + result.tts_audio_url.split("/").pop();
         };
 
         mediaRecorder.start();
